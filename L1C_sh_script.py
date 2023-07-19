@@ -26,3 +26,28 @@ touch.touch("L1C_processing.sh")
 f = open("L1C_processing.sh","w")
 f.writelines(list_L1C)
 f.close
+
+##################################################################################################################################
+#%%
+
+import os
+import touch
+
+os.remove("L1C_processing.sh")
+touch.touch("L1C_processing.sh")
+
+f = open("L1C_processing.sh", "a")
+
+path = '/home/pierreaudisio/Bureau/Mangrove/python_script/peps_download-master'
+folders = os.listdir( path )
+
+
+list_L1C = []
+for i in folders:
+    a =  "/home/pierreaudisio/Sen2Cor-02.11.00-Linux64/bin/L2A_Process" + " " + path + "/" +str(i)
+    f.writelines(a + "\n")
+f.close()
+
+#open and read the file after the appending:
+f = open("L1C_processing.sh", "r")
+print(f.read())
